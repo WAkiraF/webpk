@@ -12,17 +12,29 @@ module.exports = {
     module: {
         rules: [
           {
-              test: /\.css/,
-              use: [
+            test: /\.css/,
+            use: [
+              {
+                  loader: MiniCssExtractPlugin.loader,
+              },
+              {
+                  loader: 'css-loader',
+              },
+            ],
+          },
+          {
+            test: /\.(png|jpg)/,
+            use: [
                 {
-                    loader: MiniCssExtractPlugin.loader,
+                    loader: 'file-loader',
+                    options: {
+                        esModule: false,
+                        name: 'images/[name].[ext]'
+                    },
                 },
-                {
-                    loader: 'css-loader',
-                }
-              ]
-          }
-        ]
+            ],
+          },
+        ],
     },
     plugins: [
         new MiniCssExtractPlugin({
