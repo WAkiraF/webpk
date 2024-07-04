@@ -12,13 +12,16 @@ module.exports = {
     module: {
         rules: [
           {
-            test: /\.css/,
+            test: /\.(css|sass|scss)/,
             use: [
               {
-                  loader: MiniCssExtractPlugin.loader,
+                loader: MiniCssExtractPlugin.loader,
               },
               {
-                  loader: 'css-loader',
+                loader: 'css-loader',
+              },
+              {
+                loader: 'sass-loader',
               },
             ],
           },
@@ -67,7 +70,9 @@ module.exports = {
             filename: 'access.html'
         }),
         new HtmlWebpackPlugin({
-            template: './src/templetes/index.pug',
-        }),        new CleanWebpackPlugin(),
+            template: './src/templetes/members/taro.pug',
+            filename: 'members/taro.html'
+        }),
+        new CleanWebpackPlugin(),
     ],
 }
